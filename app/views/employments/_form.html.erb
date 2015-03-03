@@ -1,43 +1,22 @@
 <%= form_for @employment do |f| %>
-
-  <div class="well">
-    <p>
-      <strong>Instructions</strong>
-    </p>
-
-    <ul>
-      <li>Give all of the dropdowns a class of "form-control"</li>
-      <li>Make the person dropdown have no blank options</li>
-      <li>Make the organization dropdown have a blank option</li>
-      <li>Make the job title dropdown have a blank option, but the user sees "Select a title, yo!"</li>
-    </ul>
-
-    <p>
-      <strong>Bonus!</strong>
-      <br>Make the location dropdown have a blank option, but make that option go away
-      after a user has selected something.  So on the "new" page there's a blank option, but on the
-      edit page there's no blank option.
-    </p>
-  </div>
-
   <div class="form-group">
     <%= f.label :person_id %>
-    <em>Add the people dropdown here</em>
+    <%= f.collection_select(:person_id, @persons, :id, :full_name, {}, {class: "form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= f.label :organization_id %>
-    <em>Add the organizations dropdown here</em>
+    <%= f.collection_select(:organization_id, @organizations, :id, :name, {include_blank: true}, {class: "form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= f.label :job_title_id %>
-    <em>Add the job titles dropdown here</em>
+    <%= f.collection_select(:job_title_id, @jobs, :id, :name, {include_blank: "Select a title, yo!"}, {class: "form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= f.label :location_id %>
-    <em>Add the locations dropdown here</em>
+    <%= f.collection_select(:location_id, @locations, :id, :name,  self.toggle_blank , {class: "form-control"}) %>
   </div>
 
   <p>

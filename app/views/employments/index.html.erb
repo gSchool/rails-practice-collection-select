@@ -4,7 +4,6 @@
   </div>
   <h1>Employments</h1>
 </div>
-
 <table class="table">
   <thead>
     <tr>
@@ -12,15 +11,39 @@
       <th>Person</th>
       <th>Job Title</th>
       <th>Location</th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <% @employments.each do |employment| %>
       <tr>
-        <td><em>replace me with the organization</em></td>
-        <td><em>replace me with the person</em></td>
-        <td><em>replace me with the job title</em></td>
-        <td><em>replace me with the location</em></td>
+        <td>
+          <% if employment.organization == nil %>
+            <%= "" %>
+          <% else %>
+            <%= employment.organization.name %>
+          <% end %>
+        </td>
+        <td> <%= employment.person.full_name %> </td>
+        <td>
+          <% if employment.job_title == nil %>
+            <%= "" %>
+          <% else %>
+            <%= employment.job_title.name %>
+          <% end %>
+        </td>
+        <td>
+          <% if employment.location == nil %>
+            <%= "" %>
+          <% else %>
+            <%= employment.location.name %>
+          <% end %>
+        </td>
+        <td>
+          <div>
+            <%= link_to "Edit", edit_employment_path(employment[:id]) %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
