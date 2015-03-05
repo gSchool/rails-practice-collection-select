@@ -1,15 +1,11 @@
 <%= form_for @employment do |f| %>
 
   <div class="well">
-    <p>
-      <strong>Instructions</strong>
-    </p>
-
     <ul>
-      <li>Give all of the dropdowns a class of "form-control"</li>
-      <li>Make the person dropdown have no blank options</li>
-      <li>Make the organization dropdown have a blank option</li>
-      <li>Make the job title dropdown have a blank option, but the user sees "Select a title, yo!"</li>
+       <%= f.collection_select(:location_id, Location.all, :id, :name, {}, class: "form-control") %>
+       <%= f.collection_select(:organization_id, Organization.all, :id, :name, {:include_blank => true}, class: "form-control") %>
+       <%= f.collection_select(:job_title_id, JobTitle.all, :id, :name, {:include_blank => "Select a title, yo!"}, class: "form-control") %>
+       <%= f.collection_select(:person_id, Person.all, :id, :full_name, {:include_blank => false}, class: "form-control") %>
     </ul>
 
     <p>
